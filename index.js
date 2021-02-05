@@ -28,6 +28,9 @@ const checkText = (innerText) => {
         client.publish("smarthome/room1/led", "0");
         return "Выключила";
     }
+    if (textRequest === "передай привет") {
+        return "Передаю";
+    }
     if (textRequest === "поздоровайся") return "Добро пожаловать!";
     return textRequest || 'Добро пожаловать в Тестовое Кафе. На данный момент доступны такие команды, как "Включи свет.", "Выключи свет.", "Поздоровайся"! \nПриятного использования! :)'
 };
