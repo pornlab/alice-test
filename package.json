@@ -1,0 +1,15 @@
+{
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:pornlab/alice.git"
+    },
+    "scripts": {
+        "start": "micro"
+    },
+    "homepage": "https://github.com/pornlab/alice",
+    "dependencies": {
+        "micro": "^9.1.0",
+        "mqtt": "^4.2.6"
+    }
+}
