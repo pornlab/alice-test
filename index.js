@@ -1,5 +1,6 @@
 // Для асинхронной работы используется пакет micro.
 const { json } = require('micro');
+const { axios } = require('axios');
 
 const mqtt = require("mqtt");
 const client = mqtt.connect("mqtt://ca1c5102.en.emqx.cloud", {
@@ -52,6 +53,14 @@ module.exports = async (req, res) => {
                 // Если навык был активирован без дополнительной команды,
                 // пользователю нужно сказать "Hello!".
                 text: checkText(request.original_utterance),
+                "buttons": [
+                    {
+                        "title": "Надпись на кнопке",
+                        "payload": {},
+                        "url": "https://example.com/",
+                        "hide": true
+                    }
+                ],
 
                 // Свойство response.end_session возвращается со значением false,
                 // чтобы диалог не завершался.
@@ -64,4 +73,16 @@ module.exports = async (req, res) => {
 client.on("message", function (topic, message) {
     // message is Buffer
     console.log(message.toString());
+    client.on('message', (topic, message) => {
+        if(topic === 'smarthome/room1/sensor') {
+            axios({
+                method: 'post',
+                url: '/user/12345',
+                data: {
+                    firstName: 'Fred',
+                    lastName: 'Flintstone'
+                }
+            });
+        }
+    })
 });
