@@ -75,14 +75,7 @@ client.on("message", function (topic, message) {
     console.log(message.toString());
     client.on('message', (topic, message) => {
         if(topic === 'smarthome/room1/sensor') {
-            axios({
-                method: 'post',
-                url: '/user/12345',
-                data: {
-                    firstName: 'Fred',
-                    lastName: 'Flintstone'
-                }
-            });
+
         }
     })
 });
